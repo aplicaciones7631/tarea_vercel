@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geoportal Macas</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="styles.css?v=2.0" />
+</head>
+<body>
+
+<div id="header">
+<div class="header-left">
+<span class="header-icon">&#9963;</span>
+<div>
+<h1>Geoportal Macas</h1>
+<span class="header-sub">Morona Santiago &bull; CantÃ³n Morona</span>
+</div>
+</div>
+<div class="header-right">
+<button class="btn-sidebar" id="btnReportar" title="Reportar problema">&#9888; Reportar</button>
+<button class="btn-sidebar" id="btnSidebar" title="Capas">&#9776; Capas</button>
+<div id="headerStatus" class="header-status">Inicializando...</div>
+</div>
+</div>
+
+<div id="sidebar" class="sidebar">
+<div class="sidebar-header">
+<h3>Explorar capas</h3>
+<button id="btnCloseSidebar">&times;</button>
+</div>
+
+<div class="sidebar-section">
+<h4>Mapa base</h4>
+<div class="basemap-group">
+<label class="basemap-card" data-basemap="osm">
+<input type="radio" name="basemap" value="osm" checked>
+<span class="basemap-thumb" style="background-image:url('https://a.tile.openstreetmap.org/6/34/22.png')"></span>
+<span class="basemap-label">OpenStreetMap</span>
+</label>
+<label class="basemap-card" data-basemap="satellite">
+<input type="radio" name="basemap" value="satellite">
+<span class="basemap-thumb" style="background-image:url('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/6/34/22')"></span>
+<span class="basemap-label">Satelital</span>
+</label>
+</div>
+</div>
+
+<div class="sidebar-section">
+<h4>Capas disponibles</h4>
+<div id="layerList" class="layer-list"></div>
+</div>
+
+<div class="sidebar-section">
+<h4>Leyenda</h4>
+<div id="leyendaContainer" class="leyenda-container"></div>
+</div>
+</div>
+
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+<div id="map"></div>
+
+<div id="reportModal" class="modal">
+<div class="modal-content">
+<div class="modal-header">
+<h3>&#9888; Reportar problema</h3>
+<button class="modal-close" id="btnCerrarModal">&times;</button>
+</div>
+<div class="modal-body">
+<div class="form-group">
+<label for="reportCategoria">CategorÃ­a del problema</label>
+<select id="reportCategoria" required>
+<option value="">Seleccione una categorÃ­a...</option>
+<option value="Bache">Bache / Hueco en la vÃ­a</option>
+<option value="Alcantarilla">Alcantarilla tapada</option>
+<option value="Alumbrado">Alumbrado pÃºblico daÃ±ado</option>
+<option value="Basura">Basura acumulada</option>
+<option value="Senal">SeÃ±al de trÃ¡nsito daÃ±ada</option>
+<option value="Acera">Acera en mal estado</option>
+<option value="Inundacion">InundaciÃ³n</option>
+<option value="Arbol">Ãrbol caÃ­do</option>
+<option value="Vandalismo">Vandalismo / Grafiti</option>
+<option value="Otro">Otro</option>
+</select>
+</div>
+<div class="form-group">
+<label for="reportComentario">Comentario (opcional)</label>
+<textarea id="reportComentario" rows="3" placeholder="Describa el problema..."></textarea>
+</div>
+<div class="form-group">
+<label>UbicaciÃ³n</label>
+<div class="ubicacion-controls">
+<button type="button" class="btn-secondary" id="btnUbicacionMapa">&#9992; SeÃ±alar en el mapa</button>
+<button type="button" class="btn-secondary" id="btnUbicacionGps">&#127758; Mi ubicaciÃ³n</button>
+</div>
+<div id="reportCoords" class="coords-info">Ninguna ubicaciÃ³n seleccionada</div>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn-cancel" id="btnCancelarReporte">Cancelar</button>
+<button type="button" class="btn-primary" id="btnEnviarReporte" disabled>&#128228; Enviar reporte</button>
+</div>
+</div>
+</div>
+
+<div id="footer">
+<span>UTPL &mdash; Especialidad SIG</span>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js?v=2.0"></script>
+</body>
+</html>
